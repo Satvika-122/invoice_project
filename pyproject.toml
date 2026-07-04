@@ -1,0 +1,20 @@
+[project]
+name = "invoice-processing"
+version = "0.1.0"
+description = "Production-grade JSON-first AP invoice processing pipeline."
+requires-python = ">=3.11"
+dependencies = [
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+]
+
+[tool.setuptools.packages.find]
+include = ["invoice_processing*"]
+exclude = ["data*", "outputs*", "tests*"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

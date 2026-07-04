@@ -1,0 +1,18 @@
+[
+  {
+    "receipt_id": "GR-7001",
+    "po_number": "PO-9001",
+    "po_line_id": "PO-9001-1",
+    "quantity_received": "10",
+    "quantity_invoiced": "0",
+    "received_at": "2026-06-20"
+  },
+  {
+    "receipt_id": "GR-7002",
+    "po_number": "PO-9001",
+    "po_line_id": "PO-9001-2",
+    "quantity_received": "20",
+    "quantity_invoiced": "20",
+    "received_at": "2026-06-09"
+  }
+]

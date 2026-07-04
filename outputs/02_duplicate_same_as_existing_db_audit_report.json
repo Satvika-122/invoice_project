@@ -1,0 +1,152 @@
+{
+  "generated_at": "2026-07-04T06:15:52.619921+00:00",
+  "source_invoice": "data\\test_cases\\02_duplicate_same_as_existing_db.json",
+  "decision": {
+    "decision": "rejected",
+    "invoice_number": "INV-ACME-2026-001",
+    "vendor_id": "VEND-1001",
+    "po_id": "PO-9001",
+    "dedupe_key": "vend-1001|inv-acme-2026-001|531000.00|2026-06-27",
+    "reasons": [
+      "Exact duplicate: dedupe_key vend-1001|inv-acme-2026-001|531000.00|2026-06-27 already exists in invoice history"
+    ],
+    "checks_run": [
+      "completeness",
+      "vendor_approval",
+      "duplicate"
+    ],
+    "validations": [],
+    "decided_at": "2026-07-04T06:15:52.619909+00:00"
+  },
+  "trace": [
+    {
+      "check": "data_source",
+      "purpose": "Load AP reference data and invoice history from configured data store.",
+      "output": {
+        "source": "postgresql",
+        "vendors_loaded": 10,
+        "purchase_orders_loaded": 8,
+        "historical_invoices_loaded": 1,
+        "rules_config": {
+          "tolerance_pct": "0.02",
+          "tolerance_abs": "5.00",
+          "fuzzy_match_amount_window_pct": "0.03",
+          "fuzzy_match_date_window_days": 7,
+          "tax_tolerance_abs": "5.00",
+          "total_tolerance_abs": "5.00"
+        },
+        "approval_thresholds": {
+          "thresholds": [
+            {
+              "min_amount": "0.00",
+              "max_amount": "49999.99",
+              "role": "AP Automation"
+            },
+            {
+              "min_amount": "50000.00",
+              "max_amount": "500000.00",
+              "role": "Finance Manager"
+            },
+            {
+              "min_amount": "500000.01",
+              "max_amount": "999999999.00",
+              "role": "Senior Finance Approval"
+            }
+          ]
+        }
+      },
+      "timestamp": "2026-07-04T06:15:52.619439+00:00"
+    },
+    {
+      "check": "normalize_invoice",
+      "purpose": "Normalize incoming invoice and build dedupe_key.",
+      "output": {
+        "invoice_number": "INV-ACME-2026-001",
+        "vendor_id": "VEND-1001",
+        "po_id": "PO-9001",
+        "total": "531000.00",
+        "dedupe_key": "vend-1001|inv-acme-2026-001|531000.00|2026-06-27"
+      },
+      "timestamp": "2026-07-04T06:15:52.619477+00:00"
+    },
+    {
+      "check": "completeness",
+      "purpose": "Missing critical field check.",
+      "output": {
+        "missing_fields": []
+      },
+      "timestamp": "2026-07-04T06:15:52.619485+00:00"
+    },
+    {
+      "check": "vendor_approval",
+      "purpose": "Vendor approval and exact vendor-name check against vendor master.",
+      "output": {
+        "vendor": {
+          "vendor_id": "VEND-1001",
+          "name": "Acme Co",
+          "approved": true,
+          "tax_id": "US-11-1111111",
+          "created_at": "2025-10-01T14:30:00+05:30"
+        },
+        "approved": true,
+        "invoice_vendor_name": "Acme Co",
+        "master_vendor_name": "Acme Co",
+        "name_matches": true,
+        "resolution": "vendor_id_exact",
+        "comparison": "exact_or_ocr_normalized"
+      },
+      "timestamp": "2026-07-04T06:15:52.619512+00:00"
+    },
+    {
+      "check": "duplicate",
+      "purpose": "Exact duplicate check against invoice history.",
+      "output": {
+        "duplicate": true,
+        "matches": [
+          {
+            "invoice_id": "85a25994-fd26-4fe7-be14-57a70c51f826",
+            "vendor_id": "VEND-1001",
+            "po_id": "PO-9001",
+            "invoice_number": "INV-ACME-2026-001",
+            "invoice_date": "2026-06-27",
+            "total": "531000.00",
+            "dedupe_key": "vend-1001|inv-acme-2026-001|531000.00|2026-06-27",
+            "raw_extraction": {
+              "tax": "81000.00",
+              "po_id": "PO-9001",
+              "total": "531000.00",
+              "currency": "INR",
+              "subtotal": "450000.00",
+              "vendor_id": "VEND-1001",
+              "line_items": [
+                {
+                  "quantity": "10",
+                  "unit_price": "45000.00",
+                  "description": "Laptop",
+                  "line_amount": "450000.00"
+                }
+              ],
+              "source_file": "invoice.json",
+              "vendor_name": "Acme Co",
+              "invoice_date": "2026-06-27",
+              "invoice_number": "INV-ACME-2026-001"
+            },
+            "source_file": "invoice.json",
+            "created_at": "2026-07-03T21:20:13.388892+05:30"
+          }
+        ]
+      },
+      "timestamp": "2026-07-04T06:15:52.619893+00:00"
+    },
+    {
+      "check": "short_circuit",
+      "purpose": "Stop after terminal duplicate rejection.",
+      "output": {
+        "decision": "rejected",
+        "reason": "exact duplicate"
+      },
+      "timestamp": "2026-07-04T06:15:52.619917+00:00"
+    }
+  ],
+  "ledger_updated": false
+}

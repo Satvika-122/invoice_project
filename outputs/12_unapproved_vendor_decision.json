@@ -1,0 +1,16 @@
+{
+  "decision": "rejected",
+  "invoice_number": "INV-TEST-UNAPPROVED-VENDOR-001",
+  "vendor_id": "VEND-1004",
+  "po_id": "PO-9001",
+  "dedupe_key": "vend-1004|inv-test-unapproved-vendor-001|531000.00|2026-06-27",
+  "reasons": [
+    "Vendor not approved: VEND-1004"
+  ],
+  "checks_run": [
+    "completeness",
+    "vendor_approval"
+  ],
+  "validations": [],
+  "decided_at": "2026-07-04T06:15:56.792196+00:00"
+}

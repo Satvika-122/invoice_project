@@ -1,0 +1,121 @@
+{
+  "decision": "needs_review",
+  "invoice_number": "AcmeCo",
+  "vendor_id": "VEND-1001",
+  "po_id": "PO-9001",
+  "dedupe_key": "vend-1001|acmeco|45000.00|2028-06-27",
+  "reasons": [
+    "OCR Confidence: Extraction confidence is acceptable but should be watched.",
+    "Quantity Validation: Line-item quantities compared against PO lines.",
+    "Unit Price Validation: Line-item unit prices compared against PO lines.",
+    "Goods Receipt Validation: PO, goods receipt, and invoice quantities compared."
+  ],
+  "checks_run": [
+    "completeness",
+    "vendor_approval",
+    "duplicate",
+    "reused_invoice_number",
+    "po_match",
+    "po_status",
+    "po_aggregate",
+    "tolerance",
+    "OCR Confidence",
+    "Total Calculation Validation",
+    "Tax Validation",
+    "Quantity Validation",
+    "Unit Price Validation",
+    "Goods Receipt Validation",
+    "Approval Workflow"
+  ],
+  "validations": [
+    {
+      "rule": "OCR Confidence",
+      "status": "LOW_CONFIDENCE",
+      "reason": "Extraction confidence is acceptable but should be watched.",
+      "details": {
+        "method": "image_ocr",
+        "confidence": "0.8118"
+      }
+    },
+    {
+      "rule": "Total Calculation Validation",
+      "status": "PASS",
+      "reason": "Invoice arithmetic is correct.",
+      "details": {
+        "line_subtotal": "45000.00",
+        "invoice_subtotal": "45000.00",
+        "subtotal_difference": "0.00",
+        "expected_total": "45000.00",
+        "actual_total": "45000.00",
+        "total_difference": "0.00",
+        "allowed_tolerance": "5.00"
+      }
+    },
+    {
+      "rule": "Tax Validation",
+      "status": "PASS",
+      "reason": "Subtotal plus tax matches invoice total.",
+      "details": {
+        "subtotal": "45000.00",
+        "tax": "0.00",
+        "expected_total": "45000.00",
+        "actual_total": "45000.00",
+        "difference": "0.00",
+        "allowed_tolerance": "5.00"
+      }
+    },
+    {
+      "rule": "Quantity Validation",
+      "status": "MANUAL_REVIEW",
+      "reason": "Line-item quantities compared against PO lines.",
+      "details": {
+        "lines": [
+          {
+            "invoice_item": "Description Quantity Unit Price Amount Laptop",
+            "status": "MANUAL_REVIEW",
+            "reason": "No matching PO line."
+          }
+        ]
+      }
+    },
+    {
+      "rule": "Unit Price Validation",
+      "status": "MANUAL_REVIEW",
+      "reason": "Line-item unit prices compared against PO lines.",
+      "details": {
+        "lines": [
+          {
+            "invoice_item": "Description Quantity Unit Price Amount Laptop",
+            "status": "MANUAL_REVIEW",
+            "reason": "No matching PO line."
+          }
+        ]
+      }
+    },
+    {
+      "rule": "Goods Receipt Validation",
+      "status": "MANUAL_REVIEW",
+      "reason": "PO, goods receipt, and invoice quantities compared.",
+      "details": {
+        "lines": [
+          {
+            "invoice_item": "Description Quantity Unit Price Amount Laptop",
+            "status": "MANUAL_REVIEW",
+            "reason": "No matching PO line."
+          }
+        ]
+      }
+    },
+    {
+      "rule": "Approval Workflow",
+      "status": "PASS",
+      "reason": "Invoice amount is within auto-approval threshold.",
+      "details": {
+        "invoice_amount": "45000.00",
+        "approval_level": "Auto Approved",
+        "assigned_approver_role": "AP Automation"
+      }
+    }
+  ],
+  "decided_at": "2026-07-04T10:50:36.710406+00:00"
+}

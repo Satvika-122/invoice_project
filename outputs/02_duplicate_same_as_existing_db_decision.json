@@ -1,0 +1,17 @@
+{
+  "decision": "rejected",
+  "invoice_number": "INV-ACME-2026-001",
+  "vendor_id": "VEND-1001",
+  "po_id": "PO-9001",
+  "dedupe_key": "vend-1001|inv-acme-2026-001|531000.00|2026-06-27",
+  "reasons": [
+    "Exact duplicate: dedupe_key vend-1001|inv-acme-2026-001|531000.00|2026-06-27 already exists in invoice history"
+  ],
+  "checks_run": [
+    "completeness",
+    "vendor_approval",
+    "duplicate"
+  ],
+  "validations": [],
+  "decided_at": "2026-07-04T06:15:52.619909+00:00"
+}

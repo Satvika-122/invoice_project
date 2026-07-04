@@ -1,0 +1,31 @@
+{
+  "valid_invoice_types": ["standard_invoice", "credit_note", "debit_note"],
+  "required_fields": {
+    "standard_invoice": [
+      "invoice_number",
+      "invoice_type",
+      "invoice_date",
+      "due_date",
+      "vendor_id",
+      "po_number",
+      "currency",
+      "total",
+      "line_items"
+    ],
+    "credit_note": [
+      "invoice_number",
+      "invoice_date",
+      "vendor_id",
+      "currency",
+      "total"
+    ],
+    "debit_note": [
+      "invoice_number",
+      "invoice_date",
+      "vendor_id",
+      "currency",
+      "total",
+      "line_items"
+    ]
+  }
+}

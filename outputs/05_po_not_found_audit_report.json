@@ -1,0 +1,141 @@
+{
+  "generated_at": "2026-07-04T06:15:53.545242+00:00",
+  "source_invoice": "data\\test_cases\\05_po_not_found.json",
+  "decision": {
+    "decision": "rejected",
+    "invoice_number": "INV-TEST-PO-MISSING-001",
+    "vendor_id": "VEND-1001",
+    "po_id": "PO-DOES-NOT-EXIST",
+    "dedupe_key": "vend-1001|inv-test-po-missing-001|531000.00|2026-06-27",
+    "reasons": [
+      "No matching PO found by exact po_id or vendor/amount/date fuzzy match within 7 days"
+    ],
+    "checks_run": [
+      "completeness",
+      "vendor_approval",
+      "duplicate",
+      "reused_invoice_number",
+      "po_match"
+    ],
+    "validations": [],
+    "decided_at": "2026-07-04T06:15:53.545231+00:00"
+  },
+  "trace": [
+    {
+      "check": "data_source",
+      "purpose": "Load AP reference data and invoice history from configured data store.",
+      "output": {
+        "source": "postgresql",
+        "vendors_loaded": 10,
+        "purchase_orders_loaded": 8,
+        "historical_invoices_loaded": 1,
+        "rules_config": {
+          "tolerance_pct": "0.02",
+          "tolerance_abs": "5.00",
+          "fuzzy_match_amount_window_pct": "0.03",
+          "fuzzy_match_date_window_days": 7,
+          "tax_tolerance_abs": "5.00",
+          "total_tolerance_abs": "5.00"
+        },
+        "approval_thresholds": {
+          "thresholds": [
+            {
+              "min_amount": "0.00",
+              "max_amount": "49999.99",
+              "role": "AP Automation"
+            },
+            {
+              "min_amount": "50000.00",
+              "max_amount": "500000.00",
+              "role": "Finance Manager"
+            },
+            {
+              "min_amount": "500000.01",
+              "max_amount": "999999999.00",
+              "role": "Senior Finance Approval"
+            }
+          ]
+        }
+      },
+      "timestamp": "2026-07-04T06:15:53.544995+00:00"
+    },
+    {
+      "check": "normalize_invoice",
+      "purpose": "Normalize incoming invoice and build dedupe_key.",
+      "output": {
+        "invoice_number": "INV-TEST-PO-MISSING-001",
+        "vendor_id": "VEND-1001",
+        "po_id": "PO-DOES-NOT-EXIST",
+        "total": "531000.00",
+        "dedupe_key": "vend-1001|inv-test-po-missing-001|531000.00|2026-06-27"
+      },
+      "timestamp": "2026-07-04T06:15:53.545041+00:00"
+    },
+    {
+      "check": "completeness",
+      "purpose": "Missing critical field check.",
+      "output": {
+        "missing_fields": []
+      },
+      "timestamp": "2026-07-04T06:15:53.545050+00:00"
+    },
+    {
+      "check": "vendor_approval",
+      "purpose": "Vendor approval and exact vendor-name check against vendor master.",
+      "output": {
+        "vendor": {
+          "vendor_id": "VEND-1001",
+          "name": "Acme Co",
+          "approved": true,
+          "tax_id": "US-11-1111111",
+          "created_at": "2025-10-01T14:30:00+05:30"
+        },
+        "approved": true,
+        "invoice_vendor_name": "Acme Co",
+        "master_vendor_name": "Acme Co",
+        "name_matches": true,
+        "resolution": "vendor_id_exact",
+        "comparison": "exact_or_ocr_normalized"
+      },
+      "timestamp": "2026-07-04T06:15:53.545083+00:00"
+    },
+    {
+      "check": "duplicate",
+      "purpose": "Exact duplicate check against invoice history.",
+      "output": {
+        "duplicate": false,
+        "matches": []
+      },
+      "timestamp": "2026-07-04T06:15:53.545091+00:00"
+    },
+    {
+      "check": "reused_invoice_number",
+      "purpose": "Same invoice number with different amount/date check.",
+      "output": {
+        "reused": false,
+        "matches": []
+      },
+      "timestamp": "2026-07-04T06:15:53.545101+00:00"
+    },
+    {
+      "check": "po_match",
+      "purpose": "PO lookup fallback by vendor plus amount and invoice-date window.",
+      "output": {
+        "match_type": "none",
+        "po": null,
+        "date_window_days": 7
+      },
+      "timestamp": "2026-07-04T06:15:53.545220+00:00"
+    },
+    {
+      "check": "short_circuit",
+      "purpose": "Stop after terminal PO matching failure.",
+      "output": {
+        "decision": "rejected",
+        "reason": "no matching PO"
+      },
+      "timestamp": "2026-07-04T06:15:53.545238+00:00"
+    }
+  ],
+  "ledger_updated": false
+}

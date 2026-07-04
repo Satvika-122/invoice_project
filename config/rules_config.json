@@ -1,0 +1,8 @@
+{
+  "tolerance_pct": "0.02",
+  "tolerance_abs": "5.00",
+  "fuzzy_match_amount_window_pct": "0.03",
+  "fuzzy_match_date_window_days": 7,
+  "tax_tolerance_abs": "5.00",
+  "total_tolerance_abs": "5.00"
+}

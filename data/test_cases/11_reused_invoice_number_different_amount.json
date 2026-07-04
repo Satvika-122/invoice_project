@@ -1,0 +1,20 @@
+{
+  "invoice_number": "INV-ACME-2026-001",
+  "invoice_date": "2026-06-28",
+  "vendor_id": "VEND-1001",
+  "vendor_name": "Acme Co",
+  "po_id": "PO-9001",
+  "subtotal": "405000.00",
+  "tax": "72900.00",
+  "total": "477900.00",
+  "currency": "INR",
+  "source_file": "11_reused_invoice_number_different_amount.json",
+  "line_items": [
+    {
+      "description": "Laptop",
+      "quantity": "9",
+      "unit_price": "45000.00",
+      "line_amount": "405000.00"
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "generated_at": "2026-07-04T10:33:49.000837+00:00",
+  "source_invoice": "data\\test_inputs\\sample_scanned_invoice.png",
+  "decision": {
+    "decision": "rejected",
+    "invoice_number": "",
+    "vendor_id": "",
+    "po_id": null,
+    "dedupe_key": "",
+    "reasons": [
+      "Missing critical fields: invoice_number, invoice_date, total"
+    ],
+    "checks_run": [
+      "completeness"
+    ],
+    "validations": [],
+    "decided_at": "2026-07-04T10:33:49.000819+00:00"
+  },
+  "trace": [
+    {
+      "check": "data_source",
+      "purpose": "Load AP reference data and invoice history from configured data store.",
+      "output": {
+        "source": "json_files",
+        "vendors_loaded": 2,
+        "purchase_orders_loaded": 2,
+        "historical_invoices_loaded": 0,
+        "rules_config": {
+          "tolerance_pct": "0.02",
+          "tolerance_abs": "5.00",
+          "fuzzy_match_amount_window_pct": "0.03",
+          "fuzzy_match_date_window_days": 7,
+          "tax_tolerance_abs": "5.00",
+          "total_tolerance_abs": "5.00"
+        },
+        "approval_thresholds": {
+          "thresholds": [
+            {
+              "min_amount": "0.00",
+              "max_amount": "49999.99",
+              "role": "AP Automation"
+            },
+            {
+              "min_amount": "50000.00",
+              "max_amount": "500000.00",
+              "role": "Finance Manager"
+            },
+            {
+              "min_amount": "500000.01",
+              "max_amount": "999999999.00",
+              "role": "Senior Finance Approval"
+            }
+          ]
+        }
+      },
+      "timestamp": "2026-07-04T10:33:49.000688+00:00"
+    },
+    {
+      "check": "normalize_invoice",
+      "purpose": "Normalize incoming invoice and build dedupe_key.",
+      "output": {
+        "invoice_number": "",
+        "vendor_id": "",
+        "po_id": "",
+        "total": "0.00",
+        "dedupe_key": ""
+      },
+      "timestamp": "2026-07-04T10:33:49.000774+00:00"
+    },
+    {
+      "check": "completeness",
+      "purpose": "Missing critical field check.",
+      "output": {
+        "missing_fields": [
+          "invoice_number",
+          "invoice_date",
+          "total"
+        ]
+      },
+      "timestamp": "2026-07-04T10:33:49.000799+00:00"
+    },
+    {
+      "check": "short_circuit",
+      "purpose": "Stop after terminal completeness failure.",
+      "output": {
+        "decision": "rejected",
+        "reason": "missing critical fields"
+      },
+      "timestamp": "2026-07-04T10:33:49.000831+00:00"
+    }
+  ],
+  "ledger_updated": false
+}

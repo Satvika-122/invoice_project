@@ -1,0 +1,9 @@
+{
+  "allow_inactive_vendor_manual_review": true,
+  "allow_vendor_name_fallback": true,
+  "require_vendor_tax_profile": true,
+  "allowed_vendor_statuses_for_payment": ["active"],
+  "manual_review_vendor_statuses": ["inactive", "pending_approval"],
+  "supported_countries": ["US", "IN", "GB"],
+  "bank_change_review_days": 7
+}

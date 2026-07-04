@@ -1,0 +1,319 @@
+{
+  "execution_trace": [
+    {
+      "check": "data_source",
+      "purpose": "Load AP reference data and invoice history from configured data store.",
+      "output": {
+        "source": "postgresql",
+        "vendors_loaded": 10,
+        "purchase_orders_loaded": 8,
+        "historical_invoices_loaded": 1,
+        "rules_config": {
+          "tolerance_pct": "0.02",
+          "tolerance_abs": "5.00",
+          "fuzzy_match_amount_window_pct": "0.03",
+          "fuzzy_match_date_window_days": 7,
+          "tax_tolerance_abs": "5.00",
+          "total_tolerance_abs": "5.00"
+        },
+        "approval_thresholds": {
+          "thresholds": [
+            {
+              "min_amount": "0.00",
+              "max_amount": "49999.99",
+              "role": "AP Automation"
+            },
+            {
+              "min_amount": "50000.00",
+              "max_amount": "500000.00",
+              "role": "Finance Manager"
+            },
+            {
+              "min_amount": "500000.01",
+              "max_amount": "999999999.00",
+              "role": "Senior Finance Approval"
+            }
+          ]
+        }
+      },
+      "timestamp": "2026-07-04T06:15:56.258537+00:00"
+    },
+    {
+      "check": "normalize_invoice",
+      "purpose": "Normalize incoming invoice and build dedupe_key.",
+      "output": {
+        "invoice_number": "INV-ACME-2026-001",
+        "vendor_id": "VEND-1001",
+        "po_id": "PO-9001",
+        "total": "477900.00",
+        "dedupe_key": "vend-1001|inv-acme-2026-001|477900.00|2026-06-28"
+      },
+      "timestamp": "2026-07-04T06:15:56.258618+00:00"
+    },
+    {
+      "check": "completeness",
+      "purpose": "Missing critical field check.",
+      "output": {
+        "missing_fields": []
+      },
+      "timestamp": "2026-07-04T06:15:56.258639+00:00"
+    },
+    {
+      "check": "vendor_approval",
+      "purpose": "Vendor approval and exact vendor-name check against vendor master.",
+      "output": {
+        "vendor": {
+          "vendor_id": "VEND-1001",
+          "name": "Acme Co",
+          "approved": true,
+          "tax_id": "US-11-1111111",
+          "created_at": "2025-10-01T14:30:00+05:30"
+        },
+        "approved": true,
+        "invoice_vendor_name": "Acme Co",
+        "master_vendor_name": "Acme Co",
+        "name_matches": true,
+        "resolution": "vendor_id_exact",
+        "comparison": "exact_or_ocr_normalized"
+      },
+      "timestamp": "2026-07-04T06:15:56.258714+00:00"
+    },
+    {
+      "check": "duplicate",
+      "purpose": "Exact duplicate check against invoice history.",
+      "output": {
+        "duplicate": false,
+        "matches": []
+      },
+      "timestamp": "2026-07-04T06:15:56.258732+00:00"
+    },
+    {
+      "check": "reused_invoice_number",
+      "purpose": "Same invoice number with different amount/date check.",
+      "output": {
+        "reused": true,
+        "matches": [
+          {
+            "invoice_id": "85a25994-fd26-4fe7-be14-57a70c51f826",
+            "vendor_id": "VEND-1001",
+            "po_id": "PO-9001",
+            "invoice_number": "INV-ACME-2026-001",
+            "invoice_date": "2026-06-27",
+            "total": "531000.00",
+            "dedupe_key": "vend-1001|inv-acme-2026-001|531000.00|2026-06-27",
+            "raw_extraction": {
+              "tax": "81000.00",
+              "po_id": "PO-9001",
+              "total": "531000.00",
+              "currency": "INR",
+              "subtotal": "450000.00",
+              "vendor_id": "VEND-1001",
+              "line_items": [
+                {
+                  "quantity": "10",
+                  "unit_price": "45000.00",
+                  "description": "Laptop",
+                  "line_amount": "450000.00"
+                }
+              ],
+              "source_file": "invoice.json",
+              "vendor_name": "Acme Co",
+              "invoice_date": "2026-06-27",
+              "invoice_number": "INV-ACME-2026-001"
+            },
+            "source_file": "invoice.json",
+            "created_at": "2026-07-03T21:20:13.388892+05:30"
+          }
+        ]
+      },
+      "timestamp": "2026-07-04T06:15:56.258818+00:00"
+    },
+    {
+      "check": "po_match",
+      "purpose": "PO lookup by exact po_id.",
+      "output": {
+        "match_type": "exact",
+        "po": {
+          "po_id": "PO-9001",
+          "vendor_id": "VEND-1001",
+          "po_amount": "767000.00",
+          "matched_amount": "531000.00",
+          "status": "partially_matched",
+          "created_at": "2026-06-01T05:30:00+05:30",
+          "line_items": [
+            {
+              "po_line_id": "PO-9001-1",
+              "po_id": "PO-9001",
+              "item_name": "Laptop",
+              "ordered_quantity": "10.00",
+              "unit_price": "45000.00"
+            },
+            {
+              "po_line_id": "PO-9001-2",
+              "po_id": "PO-9001",
+              "item_name": "Mobile Phone",
+              "ordered_quantity": "20.00",
+              "unit_price": "10000.00"
+            }
+          ]
+        }
+      },
+      "timestamp": "2026-07-04T06:15:56.258877+00:00"
+    },
+    {
+      "check": "po_aggregate",
+      "purpose": "Aggregate running matched amount against PO for split invoices.",
+      "output": {
+        "po_id": "PO-9001",
+        "po_amount": "767000.00",
+        "previous_matched_amount": "531000.00",
+        "invoice_total": "477900.00",
+        "projected_matched_amount": "1008900.00"
+      },
+      "timestamp": "2026-07-04T06:15:56.258920+00:00"
+    },
+    {
+      "check": "tolerance",
+      "purpose": "Check projected matched amount against PO tolerance.",
+      "output": {
+        "projected": "1008900.00",
+        "po_amount": "767000.00",
+        "overage": "241900.00",
+        "allowed": "15340.00",
+        "passed": false
+      },
+      "timestamp": "2026-07-04T06:15:56.258967+00:00"
+    },
+    {
+      "check": "OCR Confidence",
+      "purpose": "Structured JSON input; OCR confidence is not applicable.",
+      "output": {
+        "rule": "OCR Confidence",
+        "status": "PASS",
+        "reason": "Structured JSON input; OCR confidence is not applicable.",
+        "details": {
+          "method": "structured_json"
+        }
+      },
+      "timestamp": "2026-07-04T06:15:56.337083+00:00"
+    },
+    {
+      "check": "Total Calculation Validation",
+      "purpose": "Invoice arithmetic is correct.",
+      "output": {
+        "rule": "Total Calculation Validation",
+        "status": "PASS",
+        "reason": "Invoice arithmetic is correct.",
+        "details": {
+          "line_subtotal": "405000.00",
+          "invoice_subtotal": "405000.00",
+          "subtotal_difference": "0.00",
+          "expected_total": "477900.00",
+          "actual_total": "477900.00",
+          "total_difference": "0.00",
+          "allowed_tolerance": "5.00"
+        }
+      },
+      "timestamp": "2026-07-04T06:15:56.337114+00:00"
+    },
+    {
+      "check": "Tax Validation",
+      "purpose": "Subtotal plus tax matches invoice total.",
+      "output": {
+        "rule": "Tax Validation",
+        "status": "PASS",
+        "reason": "Subtotal plus tax matches invoice total.",
+        "details": {
+          "subtotal": "405000.00",
+          "tax": "72900.00",
+          "expected_total": "477900.00",
+          "actual_total": "477900.00",
+          "difference": "0.00",
+          "allowed_tolerance": "5.00"
+        }
+      },
+      "timestamp": "2026-07-04T06:15:56.337130+00:00"
+    },
+    {
+      "check": "Quantity Validation",
+      "purpose": "Line-item quantities compared against PO lines.",
+      "output": {
+        "rule": "Quantity Validation",
+        "status": "PARTIAL_APPROVAL",
+        "reason": "Line-item quantities compared against PO lines.",
+        "details": {
+          "lines": [
+            {
+              "invoice_item": "Laptop",
+              "po_item": "Laptop",
+              "invoice_quantity": "9.00",
+              "ordered_quantity": "10.00",
+              "status": "PARTIAL_APPROVAL",
+              "reason": "Invoice quantity is lower than PO ordered quantity; partial approval depends on goods receipt."
+            }
+          ]
+        }
+      },
+      "timestamp": "2026-07-04T06:15:56.337147+00:00"
+    },
+    {
+      "check": "Unit Price Validation",
+      "purpose": "Line-item unit prices compared against PO lines.",
+      "output": {
+        "rule": "Unit Price Validation",
+        "status": "PASS",
+        "reason": "Line-item unit prices compared against PO lines.",
+        "details": {
+          "lines": [
+            {
+              "invoice_item": "Laptop",
+              "po_item": "Laptop",
+              "expected_price": "45000.00",
+              "invoice_price": "45000.00",
+              "difference": "0.00",
+              "status": "PASS",
+              "reason": "Invoice unit price matches PO unit price."
+            }
+          ]
+        }
+      },
+      "timestamp": "2026-07-04T06:15:56.337166+00:00"
+    },
+    {
+      "check": "Goods Receipt Validation",
+      "purpose": "PO, goods receipt, and invoice quantities compared.",
+      "output": {
+        "rule": "Goods Receipt Validation",
+        "status": "MANUAL_REVIEW",
+        "reason": "PO, goods receipt, and invoice quantities compared.",
+        "details": {
+          "lines": [
+            {
+              "invoice_item": "Laptop",
+              "invoice_quantity": "9.00",
+              "received_quantity": "10.00",
+              "status": "MANUAL_REVIEW",
+              "reason": "Invoice quantity is lower than received quantity."
+            }
+          ]
+        }
+      },
+      "timestamp": "2026-07-04T06:15:56.337183+00:00"
+    },
+    {
+      "check": "Approval Workflow",
+      "purpose": "Invoice amount requires Finance Manager approval.",
+      "output": {
+        "rule": "Approval Workflow",
+        "status": "MANUAL_REVIEW",
+        "reason": "Invoice amount requires Finance Manager approval.",
+        "details": {
+          "invoice_amount": "477900.00",
+          "approval_level": "Level 2",
+          "assigned_approver_role": "Finance Manager"
+        }
+      },
+      "timestamp": "2026-07-04T06:15:56.337196+00:00"
+    }
+  ]
+}

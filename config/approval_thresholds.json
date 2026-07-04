@@ -1,0 +1,7 @@
+{
+  "thresholds": [
+    {"min_amount": "0.00", "max_amount": "49999.99", "role": "AP Automation"},
+    {"min_amount": "50000.00", "max_amount": "500000.00", "role": "Finance Manager"},
+    {"min_amount": "500000.01", "max_amount": "999999999.00", "role": "Senior Finance Approval"}
+  ]
+}

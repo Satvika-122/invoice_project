@@ -1,0 +1,20 @@
+{
+  "invoice_number": "INV-TEST-QTY-UNDER-001",
+  "invoice_date": "2026-06-27",
+  "vendor_id": "VEND-1001",
+  "vendor_name": "Acme Co",
+  "po_id": "PO-9001",
+  "subtotal": "90000.00",
+  "tax": "16200.00",
+  "total": "106200.00",
+  "currency": "INR",
+  "source_file": "07_quantity_less_than_received.json",
+  "line_items": [
+    {
+      "description": "Laptop",
+      "quantity": "2",
+      "unit_price": "45000.00",
+      "line_amount": "90000.00"
+    }
+  ]
+}

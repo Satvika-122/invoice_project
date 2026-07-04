@@ -1,0 +1,22 @@
+{
+  "vendor_bill_no": "DEMO-SPLIT-2026-002",
+  "invoice_number": "DEMO-SPLIT-2026-002",
+  "invoice_date": "2026-06-30",
+  "vendor_id": "VEND-1001",
+  "vendor_name": "Acme Co",
+  "po_id": "PO-9001",
+  "subtotal": "195000.00",
+  "tax": "35100.00",
+  "total": "230100.00",
+  "currency": "INR",
+  "source_file": "split_po_invoice2_of_2.pdf",
+  "line_items": [
+    {
+      "description": "Laptop",
+      "quantity": "4",
+      "unit_price": "45000.00",
+      "line_amount": "195000.00",
+      "tax_amount": null
+    }
+  ]
+}

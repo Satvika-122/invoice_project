@@ -1,0 +1,46 @@
+[
+  {
+    "po_number": "PO-9001",
+    "vendor_id": "VEND-1001",
+    "status": "partially_invoiced",
+    "currency": "INR",
+    "start_date": "2026-06-01",
+    "end_date": "2026-12-31",
+    "approved": true,
+    "department": "default",
+    "cost_center": "IT-OPS",
+    "deleted": false,
+    "archived": false,
+    "allows_multi_po_invoice": false,
+    "total_amount": "767000.00",
+    "invoiced_amount": "236000.00",
+    "tolerance_percent": "2.0",
+    "tolerance_amount": "2500.00",
+    "line_items": [
+      {
+        "po_line_id": "PO-9001-1",
+        "description": "laptop",
+        "product_code": "LAPTOP-14",
+        "sku": "LAPTOP-14",
+        "item_category": "electronics",
+        "uom": "EA",
+        "quantity_ordered": "10",
+        "quantity_invoiced": "0",
+        "unit_price": "45000.00",
+        "line_total": "450000.00"
+      },
+      {
+        "po_line_id": "PO-9001-2",
+        "description": "mobile phone",
+        "product_code": "MOBILE-5G",
+        "sku": "MOBILE-5G",
+        "item_category": "electronics",
+        "uom": "EA",
+        "quantity_ordered": "20",
+        "quantity_invoiced": "20",
+        "unit_price": "10000.00",
+        "line_total": "200000.00"
+      }
+    ]
+  }
+]

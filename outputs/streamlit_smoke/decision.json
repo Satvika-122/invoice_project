@@ -1,0 +1,16 @@
+{
+  "decision": "rejected",
+  "invoice_number": "Acme",
+  "vendor_id": "VEND-1001",
+  "po_id": "PO-9001",
+  "dedupe_key": "vend-1001|acme|53100.00|2026-06-27",
+  "reasons": [
+    "Vendor name mismatch: invoice has 'Acme Co', vendor master has 'Bharat Tech Supplies Pvt Ltd'"
+  ],
+  "checks_run": [
+    "completeness",
+    "vendor_approval"
+  ],
+  "validations": [],
+  "decided_at": "2026-07-04T09:35:13.718307+00:00"
+}

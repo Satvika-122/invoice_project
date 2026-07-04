@@ -1,0 +1,18 @@
+[
+  {
+    "po_id": "PO-9001",
+    "vendor_id": "VEND-1001",
+    "po_amount": "767000.00",
+    "matched_amount": "0.00",
+    "status": "open",
+    "created_at": "2026-06-01T00:00:00Z"
+  },
+  {
+    "po_id": "PO-9002",
+    "vendor_id": "VEND-1001",
+    "po_amount": "5000.00",
+    "matched_amount": "0.00",
+    "status": "open",
+    "created_at": "2026-06-15T00:00:00Z"
+  }
+]

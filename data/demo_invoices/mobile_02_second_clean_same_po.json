@@ -1,0 +1,22 @@
+{
+  "vendor_bill_no": "DEMO-MOB-2026-002",
+  "invoice_number": "DEMO-MOB-2026-002",
+  "invoice_date": "2026-06-11",
+  "vendor_id": "VEND-1001",
+  "vendor_name": "Acme Co",
+  "po_id": "PO-9001",
+  "subtotal": "200000.00",
+  "tax": "36000.00",
+  "total": "236000.00",
+  "currency": "INR",
+  "source_file": "mobile_02_second_clean_same_po.pdf",
+  "line_items": [
+    {
+      "description": "Mobile Phone",
+      "quantity": "2E+1",
+      "unit_price": "10000.00",
+      "line_amount": "200000.00",
+      "tax_amount": null
+    }
+  ]
+}

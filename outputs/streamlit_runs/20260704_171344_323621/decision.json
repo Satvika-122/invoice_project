@@ -1,0 +1,19 @@
+{
+  "decision": "rejected",
+  "invoice_number": "Acme",
+  "vendor_id": "VEND-1001",
+  "po_id": "PO-8001",
+  "dedupe_key": "vend-1001|acme|63100.00|2026-06-27",
+  "reasons": [
+    "No matching PO found by exact po_id or vendor/amount/date fuzzy match within 7 days"
+  ],
+  "checks_run": [
+    "completeness",
+    "vendor_approval",
+    "duplicate",
+    "reused_invoice_number",
+    "po_match"
+  ],
+  "validations": [],
+  "decided_at": "2026-07-04T11:43:47.362348+00:00"
+}

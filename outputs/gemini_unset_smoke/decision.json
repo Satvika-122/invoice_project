@@ -1,0 +1,15 @@
+{
+  "decision": "rejected",
+  "invoice_number": "",
+  "vendor_id": "",
+  "po_id": null,
+  "dedupe_key": "",
+  "reasons": [
+    "Missing critical fields: invoice_number, invoice_date, total"
+  ],
+  "checks_run": [
+    "completeness"
+  ],
+  "validations": [],
+  "decided_at": "2026-07-04T10:33:49.000819+00:00"
+}

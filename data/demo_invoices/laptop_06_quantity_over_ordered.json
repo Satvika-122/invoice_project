@@ -1,0 +1,22 @@
+{
+  "vendor_bill_no": "DEMO-LAP-2026-006",
+  "invoice_number": "DEMO-LAP-2026-006",
+  "invoice_date": "2026-06-27",
+  "vendor_id": "VEND-1001",
+  "vendor_name": "Acme Co",
+  "po_id": "PO-9001",
+  "subtotal": "495000.00",
+  "tax": "89100.00",
+  "total": "584100.00",
+  "currency": "INR",
+  "source_file": "laptop_06_quantity_over_ordered.pdf",
+  "line_items": [
+    {
+      "description": "Laptop",
+      "quantity": "11",
+      "unit_price": "45000.00",
+      "line_amount": "495000.00",
+      "tax_amount": null
+    }
+  ]
+}

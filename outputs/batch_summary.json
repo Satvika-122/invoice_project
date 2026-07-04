@@ -1,0 +1,124 @@
+{
+  "total_invoices": 12,
+  "approved": 0,
+  "partial_approved": 4,
+  "manual_review": 3,
+  "rejected": 5,
+  "items": [
+    {
+      "invoice": "data\\test_cases\\01_happy_path_full_po_match.json",
+      "decision": "needs_review",
+      "reasons": [
+        "PO amount exceeded: 1062000.00 vs 767000.00 (38.46% over, allowed 15340.00)",
+        "Approval Workflow: Invoice amount requires Senior Finance Approval approval."
+      ],
+      "persisted_to_history": false
+    },
+    {
+      "invoice": "data\\test_cases\\02_duplicate_same_as_existing_db.json",
+      "decision": "rejected",
+      "reasons": [
+        "Exact duplicate: dedupe_key vend-1001|inv-acme-2026-001|531000.00|2026-06-27 already exists in invoice history"
+      ],
+      "persisted_to_history": false
+    },
+    {
+      "invoice": "data\\test_cases\\03_vendor_name_mismatch.json",
+      "decision": "rejected",
+      "reasons": [
+        "Vendor name mismatch: invoice has 'Ace Co', vendor master has 'Acme Co'"
+      ],
+      "persisted_to_history": false
+    },
+    {
+      "invoice": "data\\test_cases\\04_missing_invoice_number.json",
+      "decision": "rejected",
+      "reasons": [
+        "Missing critical fields: invoice_number"
+      ],
+      "persisted_to_history": false
+    },
+    {
+      "invoice": "data\\test_cases\\05_po_not_found.json",
+      "decision": "rejected",
+      "reasons": [
+        "No matching PO found by exact po_id or vendor/amount/date fuzzy match within 7 days"
+      ],
+      "persisted_to_history": false
+    },
+    {
+      "invoice": "data\\test_cases\\06_quantity_over_ordered.json",
+      "decision": "partial_approved",
+      "reasons": [
+        "PO amount exceeded: 1168200.00 vs 767000.00 (52.31% over, allowed 15340.00)",
+        "Quantity Validation: Line-item quantities compared against PO lines.",
+        "Goods Receipt Validation: PO, goods receipt, and invoice quantities compared.",
+        "Approval Workflow: Invoice amount requires Senior Finance Approval approval."
+      ],
+      "persisted_to_history": false
+    },
+    {
+      "invoice": "data\\test_cases\\07_quantity_less_than_received.json",
+      "decision": "partial_approved",
+      "reasons": [
+        "PO amount exceeded: 1008900.00 vs 767000.00 (31.54% over, allowed 15340.00)",
+        "Quantity Validation: Line-item quantities compared against PO lines.",
+        "Goods Receipt Validation: PO, goods receipt, and invoice quantities compared.",
+        "Approval Workflow: Invoice amount requires Finance Manager approval."
+      ],
+      "persisted_to_history": false
+    },
+    {
+      "invoice": "data\\test_cases\\08_unit_price_mismatch.json",
+      "decision": "needs_review",
+      "reasons": [
+        "PO amount exceeded: 1073800.00 vs 767000.00 (40.00% over, allowed 15340.00)",
+        "Unit Price Validation: Line-item unit prices compared against PO lines.",
+        "Approval Workflow: Invoice amount requires Senior Finance Approval approval."
+      ],
+      "persisted_to_history": false
+    },
+    {
+      "invoice": "data\\test_cases\\09_tax_total_mismatch.json",
+      "decision": "needs_review",
+      "reasons": [
+        "PO amount exceeded: 1064000.00 vs 767000.00 (38.72% over, allowed 15340.00)",
+        "Total Calculation Validation: Invoice arithmetic does not reconcile.",
+        "Tax Validation: Subtotal plus tax does not match invoice total.",
+        "Approval Workflow: Invoice amount requires Senior Finance Approval approval."
+      ],
+      "persisted_to_history": false
+    },
+    {
+      "invoice": "data\\test_cases\\10_po_amount_over_tolerance.json",
+      "decision": "partial_approved",
+      "reasons": [
+        "PO amount exceeded: 1593000.00 vs 767000.00 (107.69% over, allowed 15340.00)",
+        "Quantity Validation: Line-item quantities compared against PO lines.",
+        "Goods Receipt Validation: PO, goods receipt, and invoice quantities compared.",
+        "Approval Workflow: Invoice amount requires Senior Finance Approval approval."
+      ],
+      "persisted_to_history": false
+    },
+    {
+      "invoice": "data\\test_cases\\11_reused_invoice_number_different_amount.json",
+      "decision": "partial_approved",
+      "reasons": [
+        "Reused invoice number: same vendor and invoice number but different amount or date",
+        "PO amount exceeded: 1008900.00 vs 767000.00 (31.54% over, allowed 15340.00)",
+        "Quantity Validation: Line-item quantities compared against PO lines.",
+        "Goods Receipt Validation: PO, goods receipt, and invoice quantities compared.",
+        "Approval Workflow: Invoice amount requires Finance Manager approval."
+      ],
+      "persisted_to_history": false
+    },
+    {
+      "invoice": "data\\test_cases\\12_unapproved_vendor.json",
+      "decision": "rejected",
+      "reasons": [
+        "Vendor not approved: VEND-1004"
+      ],
+      "persisted_to_history": false
+    }
+  ]
+}

@@ -1,0 +1,157 @@
+[
+  {
+    "slug": "mobile_01_clean_full_quantity",
+    "scenario": "Group A - Mobile Phone clean full quantity",
+    "bill_number": "DEMO-MOB-2026-001",
+    "files": [
+      "data\\demo_invoices\\mobile_01_clean_full_quantity.pdf",
+      "data\\demo_invoices\\mobile_01_clean_full_quantity.json"
+    ]
+  },
+  {
+    "slug": "mobile_02_second_clean_same_po",
+    "scenario": "Group A - Second legitimate Mobile Phone invoice, different bill number",
+    "bill_number": "DEMO-MOB-2026-002",
+    "files": [
+      "data\\demo_invoices\\mobile_02_second_clean_same_po.pdf",
+      "data\\demo_invoices\\mobile_02_second_clean_same_po.json"
+    ]
+  },
+  {
+    "slug": "mobile_03_partial_quantity_15",
+    "scenario": "Group A - Mobile Phone partial quantity 15 of 20",
+    "bill_number": "DEMO-MOB-2026-003",
+    "files": [
+      "data\\demo_invoices\\mobile_03_partial_quantity_15.pdf",
+      "data\\demo_invoices\\mobile_03_partial_quantity_15.json"
+    ]
+  },
+  {
+    "slug": "laptop_01_happy_path_full_po_match",
+    "scenario": "Group B01 - Laptop control, full PO quantity",
+    "bill_number": "DEMO-LAP-2026-001",
+    "files": [
+      "data\\demo_invoices\\laptop_01_happy_path_full_po_match.pdf",
+      "data\\demo_invoices\\laptop_01_happy_path_full_po_match.json"
+    ]
+  },
+  {
+    "slug": "laptop_02_duplicate_same_as_existing",
+    "scenario": "Group B02 - Duplicate candidate, same bill/date/amount as seeded invoice",
+    "bill_number": "DEMO-LAP-DUP-2026-001",
+    "files": [
+      "data\\demo_invoices\\laptop_02_duplicate_same_as_existing.pdf",
+      "data\\demo_invoices\\laptop_02_duplicate_same_as_existing.json"
+    ]
+  },
+  {
+    "slug": "laptop_03_vendor_name_mismatch",
+    "scenario": "Group B03 - Vendor name mismatch",
+    "bill_number": "DEMO-LAP-2026-003",
+    "files": [
+      "data\\demo_invoices\\laptop_03_vendor_name_mismatch.pdf",
+      "data\\demo_invoices\\laptop_03_vendor_name_mismatch.json",
+      "data\\demo_invoices\\laptop_03_vendor_name_mismatch.png"
+    ]
+  },
+  {
+    "slug": "laptop_04_missing_invoice_number",
+    "scenario": "Group B04 - Missing invoice number",
+    "bill_number": null,
+    "files": [
+      "data\\demo_invoices\\laptop_04_missing_invoice_number.pdf",
+      "data\\demo_invoices\\laptop_04_missing_invoice_number.json"
+    ]
+  },
+  {
+    "slug": "laptop_05_po_not_found",
+    "scenario": "Group B05 - PO not found",
+    "bill_number": "DEMO-LAP-2026-005",
+    "files": [
+      "data\\demo_invoices\\laptop_05_po_not_found.pdf",
+      "data\\demo_invoices\\laptop_05_po_not_found.json"
+    ]
+  },
+  {
+    "slug": "laptop_06_quantity_over_ordered",
+    "scenario": "Group B06 - Quantity over ordered",
+    "bill_number": "DEMO-LAP-2026-006",
+    "files": [
+      "data\\demo_invoices\\laptop_06_quantity_over_ordered.pdf",
+      "data\\demo_invoices\\laptop_06_quantity_over_ordered.json"
+    ]
+  },
+  {
+    "slug": "laptop_07_quantity_less_than_received",
+    "scenario": "Group B07 - Quantity less than received",
+    "bill_number": "DEMO-LAP-2026-007",
+    "files": [
+      "data\\demo_invoices\\laptop_07_quantity_less_than_received.pdf",
+      "data\\demo_invoices\\laptop_07_quantity_less_than_received.json"
+    ]
+  },
+  {
+    "slug": "laptop_08_unit_price_mismatch",
+    "scenario": "Group B08 - Unit price mismatch",
+    "bill_number": "DEMO-LAP-2026-008",
+    "files": [
+      "data\\demo_invoices\\laptop_08_unit_price_mismatch.pdf",
+      "data\\demo_invoices\\laptop_08_unit_price_mismatch.json",
+      "data\\demo_invoices\\laptop_08_unit_price_mismatch.png"
+    ]
+  },
+  {
+    "slug": "laptop_09_tax_total_mismatch",
+    "scenario": "Group B09 - Tax/total mismatch",
+    "bill_number": "DEMO-LAP-2026-009",
+    "files": [
+      "data\\demo_invoices\\laptop_09_tax_total_mismatch.pdf",
+      "data\\demo_invoices\\laptop_09_tax_total_mismatch.json"
+    ]
+  },
+  {
+    "slug": "laptop_10_po_amount_over_tolerance",
+    "scenario": "Group B10 - PO amount over tolerance",
+    "bill_number": "DEMO-LAP-2026-010",
+    "files": [
+      "data\\demo_invoices\\laptop_10_po_amount_over_tolerance.pdf",
+      "data\\demo_invoices\\laptop_10_po_amount_over_tolerance.json"
+    ]
+  },
+  {
+    "slug": "laptop_11_reused_invoice_number_different_amount",
+    "scenario": "Group B11 - Reused invoice number with different amount",
+    "bill_number": "DEMO-LAP-DUP-2026-001",
+    "files": [
+      "data\\demo_invoices\\laptop_11_reused_invoice_number_different_amount.pdf",
+      "data\\demo_invoices\\laptop_11_reused_invoice_number_different_amount.json"
+    ]
+  },
+  {
+    "slug": "laptop_12_unapproved_vendor",
+    "scenario": "Group B12 - Unapproved vendor",
+    "bill_number": "DEMO-LAP-2026-012",
+    "files": [
+      "data\\demo_invoices\\laptop_12_unapproved_vendor.pdf",
+      "data\\demo_invoices\\laptop_12_unapproved_vendor.json"
+    ]
+  },
+  {
+    "slug": "split_po_invoice1_of_2",
+    "scenario": "Group C - Split PO invoice 1 of 2, six laptops",
+    "bill_number": "DEMO-SPLIT-2026-001",
+    "files": [
+      "data\\demo_invoices\\split_po_invoice1_of_2.pdf",
+      "data\\demo_invoices\\split_po_invoice1_of_2.json"
+    ]
+  },
+  {
+    "slug": "split_po_invoice2_of_2",
+    "scenario": "Group C - Split PO invoice 2 of 2, remainder plus small within-tolerance freight embedded",
+    "bill_number": "DEMO-SPLIT-2026-002",
+    "files": [
+      "data\\demo_invoices\\split_po_invoice2_of_2.pdf",
+      "data\\demo_invoices\\split_po_invoice2_of_2.json"
+    ]
+  }
+]

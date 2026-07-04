@@ -1,0 +1,1 @@
+"""Invoice input source abstractions."""

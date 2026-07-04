@@ -1,0 +1,22 @@
+{
+  "blocking_failure": 60,
+  "high": 35,
+  "medium": 15,
+  "low": 5,
+  "manual_review_threshold": 21,
+  "reject_threshold": 60,
+  "rules": {
+    "DUP001": 100,
+    "DUP002": 100,
+    "VR004": 100,
+    "PO002": 90,
+    "PO008": 70,
+    "LI005": 70,
+    "BAL003": 70,
+    "GR003": 60,
+    "TAX003": 20,
+    "CUR002": 20,
+    "PT002": 15,
+    "APP001": 15
+  }
+}

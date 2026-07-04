@@ -1,0 +1,131 @@
+{
+  "generated_at": "2026-07-04T09:35:13.718326+00:00",
+  "source_invoice": "data\\test_inputs\\sample_digital_invoice.pdf",
+  "decision": {
+    "decision": "rejected",
+    "invoice_number": "Acme",
+    "vendor_id": "VEND-1001",
+    "po_id": "PO-9001",
+    "dedupe_key": "vend-1001|acme|53100.00|2026-06-27",
+    "reasons": [
+      "Vendor name mismatch: invoice has 'Acme Co', vendor master has 'Bharat Tech Supplies Pvt Ltd'"
+    ],
+    "checks_run": [
+      "completeness",
+      "vendor_approval"
+    ],
+    "validations": [],
+    "decided_at": "2026-07-04T09:35:13.718307+00:00"
+  },
+  "trace": [
+    {
+      "check": "data_source",
+      "purpose": "Load AP reference data and invoice history from configured data store.",
+      "output": {
+        "source": "json_files",
+        "vendors_loaded": 2,
+        "purchase_orders_loaded": 2,
+        "historical_invoices_loaded": 0,
+        "rules_config": {
+          "tolerance_pct": "0.02",
+          "tolerance_abs": "5.00",
+          "fuzzy_match_amount_window_pct": "0.03",
+          "fuzzy_match_date_window_days": 7,
+          "tax_tolerance_abs": "5.00",
+          "total_tolerance_abs": "5.00"
+        },
+        "approval_thresholds": {
+          "thresholds": [
+            {
+              "min_amount": "0.00",
+              "max_amount": "49999.99",
+              "role": "AP Automation"
+            },
+            {
+              "min_amount": "50000.00",
+              "max_amount": "500000.00",
+              "role": "Finance Manager"
+            },
+            {
+              "min_amount": "500000.01",
+              "max_amount": "999999999.00",
+              "role": "Senior Finance Approval"
+            }
+          ]
+        }
+      },
+      "timestamp": "2026-07-04T09:35:13.718074+00:00"
+    },
+    {
+      "check": "normalize_invoice",
+      "purpose": "Normalize incoming invoice and build dedupe_key.",
+      "output": {
+        "invoice_number": "Acme",
+        "vendor_id": "VEND-1001",
+        "po_id": "PO-9001",
+        "total": "53100.00",
+        "dedupe_key": "vend-1001|acme|53100.00|2026-06-27"
+      },
+      "timestamp": "2026-07-04T09:35:13.718169+00:00"
+    },
+    {
+      "check": "completeness",
+      "purpose": "Missing critical field check.",
+      "output": {
+        "missing_fields": []
+      },
+      "timestamp": "2026-07-04T09:35:13.718189+00:00"
+    },
+    {
+      "check": "vendor_approval",
+      "purpose": "Vendor approval and exact vendor-name check against vendor master.",
+      "output": {
+        "vendor": {
+          "vendor_id": "VEND-1001",
+          "name": "Bharat Tech Supplies Pvt Ltd",
+          "status": "active",
+          "currency": "INR",
+          "supported_currencies": [
+            "INR"
+          ],
+          "approval_status": "approved",
+          "payment_hold": false,
+          "soft_payment_hold": false,
+          "tax_id": "29ABCDE1234F1Z5",
+          "gst_number": "29ABCDE1234F1Z5",
+          "gst_compliance_status": "cleared",
+          "gst_last_cleared_month": "2026-06",
+          "gst_pending_months": [],
+          "tax_profile_complete": true,
+          "country": "IN",
+          "supported_country": true,
+          "bank_last_changed_at": null,
+          "bank_change_review_days": 7,
+          "deleted": false,
+          "vendor_group_id": "VG-TECH",
+          "allowed_po_tolerance_percent": "2.0",
+          "allowed_po_tolerance_amount": "2500.00",
+          "payment_terms_days": 30,
+          "tax_required": true
+        },
+        "approved": true,
+        "invoice_vendor_name": "Acme Co",
+        "master_vendor_name": "Bharat Tech Supplies Pvt Ltd",
+        "name_matches": false,
+        "resolution": "vendor_id_exact",
+        "comparison": "exact_or_ocr_normalized"
+      },
+      "timestamp": "2026-07-04T09:35:13.718286+00:00"
+    },
+    {
+      "check": "short_circuit",
+      "purpose": "Stop after terminal vendor rejection.",
+      "output": {
+        "decision": "rejected",
+        "reason": "vendor not approved or not found"
+      },
+      "timestamp": "2026-07-04T09:35:13.718319+00:00"
+    }
+  ],
+  "ledger_updated": false
+}

@@ -1,0 +1,20 @@
+{
+  "invoice_number": "INV-TEST-PRICE-MISMATCH-001",
+  "invoice_date": "2026-06-27",
+  "vendor_id": "VEND-1001",
+  "vendor_name": "Acme Co",
+  "po_id": "PO-9001",
+  "subtotal": "460000.00",
+  "tax": "82800.00",
+  "total": "542800.00",
+  "currency": "INR",
+  "source_file": "08_unit_price_mismatch.json",
+  "line_items": [
+    {
+      "description": "Laptop",
+      "quantity": "10",
+      "unit_price": "46000.00",
+      "line_amount": "460000.00"
+    }
+  ]
+}

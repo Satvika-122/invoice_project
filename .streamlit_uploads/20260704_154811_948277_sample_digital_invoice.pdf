@@ -1,0 +1,210 @@
+%PDF-1.4
+%“Œ‹ž ReportLab Generated PDF document (opensource)
+1 0 obj
+<<
+/F1 2 0 R /F2 3 0 R
+>>
+endobj
+2 0 obj
+<<
+/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font
+>>
+endobj
+3 0 obj
+<<
+/BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding /Name /F2 /Subtype /Type1 /Type /Font
+>>
+endobj
+4 0 obj
+<<
+/Contents 8 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 7 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+5 0 obj
+<<
+/PageMode /UseNone /Pages 7 0 R /Type /Catalog
+>>
+endobj
+6 0 obj
+<<
+/Author (\(anonymous\)) /CreationDate (D:20260704111802+05'00') /Creator (\(unspecified\)) /Keywords () /ModDate (D:20260704111802+05'00') /Producer (ReportLab PDF Library - \(opensource\)) 
+  /Subject (\(unspecified\)) /Title (\(anonymous\)) /Trapped /False
+>>
+endobj
+7 0 obj
+<<
+/Count 1 /Kids [ 4 0 R ] /Type /Pages
+>>
+endobj
+8 0 obj
+<<
+/Length 2803
+>>
+stream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+q
+1 0 0 1 57.02362 768.5354 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 4 Tm /F2 18 Tf 22 TL 191.5912 0 Td (Tax Invoice) Tj T* -191.5912 0 Td ET
+Q
+Q
+q
+1 0 0 1 57.02362 745.5276 cm
+Q
+q
+1 0 0 1 57.02362 715.5276 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 4 Tm /F2 14 Tf 18 TL (Acme Co) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 697.5276 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Supplier invoice for AP automation testing) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 680.5197 cm
+Q
+q
+1 0 0 1 110.5512 572.5197 cm
+q
+.960784 .960784 .960784 rg
+n 0 108 119.0551 -108 re f*
+0 0 0 rg
+BT /F2 10 Tf 12 TL ET
+BT 1 0 0 1 6 95 Tm (Invoice Number:) Tj T* ET
+BT /F1 10 Tf 12 TL ET
+BT 1 0 0 1 125.0551 95 Tm (INV-PDF-2026-002) Tj T* ET
+BT /F2 10 Tf 12 TL ET
+BT 1 0 0 1 6 77 Tm (Date:) Tj T* ET
+BT /F1 10 Tf 12 TL ET
+BT 1 0 0 1 125.0551 77 Tm (2026-06-27) Tj T* ET
+BT /F2 10 Tf 12 TL ET
+BT 1 0 0 1 6 59 Tm (Vendor:) Tj T* ET
+BT /F1 10 Tf 12 TL ET
+BT 1 0 0 1 125.0551 59 Tm (Acme Co) Tj T* ET
+BT /F2 10 Tf 12 TL ET
+BT 1 0 0 1 6 41 Tm (Vendor ID:) Tj T* ET
+BT /F1 10 Tf 12 TL ET
+BT 1 0 0 1 125.0551 41 Tm (VEND-1001) Tj T* ET
+BT /F2 10 Tf 12 TL ET
+BT 1 0 0 1 6 23 Tm (Ref:) Tj T* ET
+BT /F1 10 Tf 12 TL ET
+BT 1 0 0 1 125.0551 23 Tm (PO-9001) Tj T* ET
+BT /F2 10 Tf 12 TL ET
+BT 1 0 0 1 6 5 Tm (Currency:) Tj T* ET
+BT /F1 10 Tf 12 TL ET
+BT 1 0 0 1 125.0551 5 Tm (INR) Tj T* ET
+q
+1 J
+1 j
+.827451 .827451 .827451 RG
+.25 w
+n 0 108 m 374.1732 108 l S
+n 0 0 m 374.1732 0 l S
+n 0 0 m 0 108 l S
+n 374.1732 0 m 374.1732 108 l S
+n 0 90 m 374.1732 90 l S
+n 0 72 m 374.1732 72 l S
+n 0 54 m 374.1732 54 l S
+n 0 36 m 374.1732 36 l S
+n 0 18 m 374.1732 18 l S
+n 119.0551 0 m 119.0551 108 l S
+Q
+Q
+Q
+q
+1 0 0 1 57.02362 549.8425 cm
+Q
+q
+1 0 0 1 55.27559 513.8425 cm
+q
+.85098 .917647 .968627 rg
+n 0 36 484.7244 -18 re f*
+0 0 0 rg
+BT /F2 10 Tf 12 TL ET
+BT 1 0 0 1 6 23 Tm (Description) Tj T* ET
+BT 1 0 0 1 204.4252 23 Tm (Quantity) Tj T* ET
+BT 1 0 0 1 283.7953 23 Tm (Unit Price) Tj T* ET
+BT 1 0 0 1 383.0079 23 Tm (Line Amount) Tj T* ET
+BT /F1 10 Tf 12 TL ET
+BT 1 0 0 1 6 5 Tm (Laptop) Tj T* ET
+BT 1 0 0 1 266.2353 5 Tm (1) Tj T* ET
+BT 1 0 0 1 329.3079 5 Tm (45000.00) Tj T* ET
+BT 1 0 0 1 437.0244 5 Tm (45000.00) Tj T* ET
+q
+1 J
+1 j
+.501961 .501961 .501961 RG
+.25 w
+n 0 36 m 484.7244 36 l S
+n 0 0 m 484.7244 0 l S
+n 0 0 m 0 36 l S
+n 484.7244 0 m 484.7244 36 l S
+n 0 18 m 484.7244 18 l S
+n 198.4252 0 m 198.4252 36 l S
+n 277.7953 0 m 277.7953 36 l S
+n 377.0079 0 m 377.0079 36 l S
+Q
+Q
+Q
+q
+1 0 0 1 57.02362 491.1654 cm
+Q
+q
+1 0 0 1 57.02362 479.1654 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (Subtotal: INR 45000.00) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 467.1654 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 2 Tm /F1 10 Tf 12 TL (GST: INR 8100.00) Tj T* ET
+Q
+Q
+q
+1 0 0 1 57.02362 437.1654 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 4 Tm /F2 14 Tf 18 TL (Total: INR 53100.00) Tj T* ET
+Q
+Q
+ 
+endstream
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000061 00000 n 
+0000000102 00000 n 
+0000000209 00000 n 
+0000000321 00000 n 
+0000000524 00000 n 
+0000000592 00000 n 
+0000000872 00000 n 
+0000000931 00000 n 
+trailer
+<<
+/ID 
+[<f9f8d853bb2fe966c84fe24fc66c409b><f9f8d853bb2fe966c84fe24fc66c409b>]
+% ReportLab generated PDF document -- digest (opensource)
+
+/Info 6 0 R
+/Root 5 0 R
+/Size 9
+>>
+startxref
+3785
+%%EOF

@@ -1,0 +1,22 @@
+{
+  "vendor_bill_no": "DEMO-LAP-2026-012",
+  "invoice_number": "DEMO-LAP-2026-012",
+  "invoice_date": "2026-06-27",
+  "vendor_id": "VEND-1004",
+  "vendor_name": "Orbit LLC",
+  "po_id": "PO-9001",
+  "subtotal": "450000.00",
+  "tax": "81000.00",
+  "total": "531000.00",
+  "currency": "INR",
+  "source_file": "laptop_12_unapproved_vendor.pdf",
+  "line_items": [
+    {
+      "description": "Laptop",
+      "quantity": "1E+1",
+      "unit_price": "45000.00",
+      "line_amount": "450000.00",
+      "tax_amount": null
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "total_invoices": 3,
+  "approved": 0,
+  "partial_approved": 2,
+  "manual_review": 1,
+  "rejected": 0,
+  "items": [
+    {
+      "invoice": "data\\test_inputs\\sample_digital_invoice.pdf",
+      "bill_number": "INV-PDF-2026-002",
+      "decision": "needs_review",
+      "reasons": [
+        "Quantity Validation: Line-item quantities compared against PO lines.",
+        "Unit Price Validation: Line-item unit prices compared against PO lines.",
+        "Goods Receipt Validation: PO, goods receipt, and invoice quantities compared.",
+        "Approval Workflow: Invoice amount requires Finance Manager approval."
+      ],
+      "persisted_to_history": false
+    },
+    {
+      "invoice": "data\\test_inputs\\sample_scanned_invoice.pdf",
+      "bill_number": "INV-PDF-2026-002",
+      "decision": "partial_approved",
+      "reasons": [
+        "Quantity Validation: Line-item quantities compared against PO lines.",
+        "Goods Receipt Validation: PO, goods receipt, and invoice quantities compared.",
+        "Approval Workflow: Invoice amount requires Finance Manager approval."
+      ],
+      "persisted_to_history": false
+    },
+    {
+      "invoice": "data\\test_inputs\\sample_scanned_invoice.png",
+      "bill_number": "INV-PDF-2026-002",
+      "decision": "partial_approved",
+      "reasons": [
+        "Quantity Validation: Line-item quantities compared against PO lines.",
+        "Goods Receipt Validation: PO, goods receipt, and invoice quantities compared.",
+        "Approval Workflow: Invoice amount requires Finance Manager approval."
+      ],
+      "persisted_to_history": false
+    }
+  ]
+}

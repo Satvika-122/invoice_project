@@ -1,0 +1,16 @@
+{
+  "decision": "rejected",
+  "invoice_number": "INV-TEST-VENDOR-MISMATCH-001",
+  "vendor_id": "VEND-1001",
+  "po_id": "PO-9001",
+  "dedupe_key": "vend-1001|inv-test-vendor-mismatch-001|531000.00|2026-06-27",
+  "reasons": [
+    "Vendor name mismatch: invoice has 'Ace Co', vendor master has 'Acme Co'"
+  ],
+  "checks_run": [
+    "completeness",
+    "vendor_approval"
+  ],
+  "validations": [],
+  "decided_at": "2026-07-04T06:15:52.829085+00:00"
+}

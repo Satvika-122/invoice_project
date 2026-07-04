@@ -1,0 +1,128 @@
+{
+  "decision": "partial_approved",
+  "invoice_number": "INV-TEST-QTY-OVER-001",
+  "vendor_id": "VEND-1001",
+  "po_id": "PO-9001",
+  "dedupe_key": "vend-1001|inv-test-qty-over-001|637200.00|2026-06-27",
+  "reasons": [
+    "PO amount exceeded: 1168200.00 vs 767000.00 (52.31% over, allowed 15340.00)",
+    "Quantity Validation: Line-item quantities compared against PO lines.",
+    "Goods Receipt Validation: PO, goods receipt, and invoice quantities compared.",
+    "Approval Workflow: Invoice amount requires Senior Finance Approval approval."
+  ],
+  "checks_run": [
+    "completeness",
+    "vendor_approval",
+    "duplicate",
+    "reused_invoice_number",
+    "po_match",
+    "po_aggregate",
+    "tolerance",
+    "OCR Confidence",
+    "Total Calculation Validation",
+    "Tax Validation",
+    "Quantity Validation",
+    "Unit Price Validation",
+    "Goods Receipt Validation",
+    "Approval Workflow"
+  ],
+  "validations": [
+    {
+      "rule": "OCR Confidence",
+      "status": "PASS",
+      "reason": "Structured JSON input; OCR confidence is not applicable.",
+      "details": {
+        "method": "structured_json"
+      }
+    },
+    {
+      "rule": "Total Calculation Validation",
+      "status": "PASS",
+      "reason": "Invoice arithmetic is correct.",
+      "details": {
+        "line_subtotal": "540000.00",
+        "invoice_subtotal": "540000.00",
+        "subtotal_difference": "0.00",
+        "expected_total": "637200.00",
+        "actual_total": "637200.00",
+        "total_difference": "0.00",
+        "allowed_tolerance": "5.00"
+      }
+    },
+    {
+      "rule": "Tax Validation",
+      "status": "PASS",
+      "reason": "Subtotal plus tax matches invoice total.",
+      "details": {
+        "subtotal": "540000.00",
+        "tax": "97200.00",
+        "expected_total": "637200.00",
+        "actual_total": "637200.00",
+        "difference": "0.00",
+        "allowed_tolerance": "5.00"
+      }
+    },
+    {
+      "rule": "Quantity Validation",
+      "status": "MANUAL_REVIEW",
+      "reason": "Line-item quantities compared against PO lines.",
+      "details": {
+        "lines": [
+          {
+            "invoice_item": "Laptop",
+            "po_item": "Laptop",
+            "invoice_quantity": "12.00",
+            "ordered_quantity": "10.00",
+            "status": "MANUAL_REVIEW",
+            "reason": "Invoice quantity is greater than PO ordered quantity."
+          }
+        ]
+      }
+    },
+    {
+      "rule": "Unit Price Validation",
+      "status": "PASS",
+      "reason": "Line-item unit prices compared against PO lines.",
+      "details": {
+        "lines": [
+          {
+            "invoice_item": "Laptop",
+            "po_item": "Laptop",
+            "expected_price": "45000.00",
+            "invoice_price": "45000.00",
+            "difference": "0.00",
+            "status": "PASS",
+            "reason": "Invoice unit price matches PO unit price."
+          }
+        ]
+      }
+    },
+    {
+      "rule": "Goods Receipt Validation",
+      "status": "PARTIAL_APPROVAL",
+      "reason": "PO, goods receipt, and invoice quantities compared.",
+      "details": {
+        "lines": [
+          {
+            "invoice_item": "Laptop",
+            "invoice_quantity": "12.00",
+            "received_quantity": "10.00",
+            "status": "PARTIAL_APPROVAL",
+            "reason": "Invoice quantity is greater than received quantity; partial approval or hold required for excess quantity."
+          }
+        ]
+      }
+    },
+    {
+      "rule": "Approval Workflow",
+      "status": "MANUAL_REVIEW",
+      "reason": "Invoice amount requires Senior Finance Approval approval.",
+      "details": {
+        "invoice_amount": "637200.00",
+        "approval_level": "Level 3",
+        "assigned_approver_role": "Senior Finance Approval"
+      }
+    }
+  ],
+  "decided_at": "2026-07-04T06:15:53.970062+00:00"
+}

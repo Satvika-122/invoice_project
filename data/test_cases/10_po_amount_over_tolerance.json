@@ -1,0 +1,20 @@
+{
+  "invoice_number": "INV-TEST-PO-OVER-TOLERANCE-001",
+  "invoice_date": "2026-06-27",
+  "vendor_id": "VEND-1001",
+  "vendor_name": "Acme Co",
+  "po_id": "PO-9001",
+  "subtotal": "900000.00",
+  "tax": "162000.00",
+  "total": "1062000.00",
+  "currency": "INR",
+  "source_file": "10_po_amount_over_tolerance.json",
+  "line_items": [
+    {
+      "description": "Laptop",
+      "quantity": "20",
+      "unit_price": "45000.00",
+      "line_amount": "900000.00"
+    }
+  ]
+}

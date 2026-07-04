@@ -1,0 +1,110 @@
+{
+  "generated_at": "2026-07-04T06:15:56.792222+00:00",
+  "source_invoice": "data\\test_cases\\12_unapproved_vendor.json",
+  "decision": {
+    "decision": "rejected",
+    "invoice_number": "INV-TEST-UNAPPROVED-VENDOR-001",
+    "vendor_id": "VEND-1004",
+    "po_id": "PO-9001",
+    "dedupe_key": "vend-1004|inv-test-unapproved-vendor-001|531000.00|2026-06-27",
+    "reasons": [
+      "Vendor not approved: VEND-1004"
+    ],
+    "checks_run": [
+      "completeness",
+      "vendor_approval"
+    ],
+    "validations": [],
+    "decided_at": "2026-07-04T06:15:56.792196+00:00"
+  },
+  "trace": [
+    {
+      "check": "data_source",
+      "purpose": "Load AP reference data and invoice history from configured data store.",
+      "output": {
+        "source": "postgresql",
+        "vendors_loaded": 10,
+        "purchase_orders_loaded": 8,
+        "historical_invoices_loaded": 1,
+        "rules_config": {
+          "tolerance_pct": "0.02",
+          "tolerance_abs": "5.00",
+          "fuzzy_match_amount_window_pct": "0.03",
+          "fuzzy_match_date_window_days": 7,
+          "tax_tolerance_abs": "5.00",
+          "total_tolerance_abs": "5.00"
+        },
+        "approval_thresholds": {
+          "thresholds": [
+            {
+              "min_amount": "0.00",
+              "max_amount": "49999.99",
+              "role": "AP Automation"
+            },
+            {
+              "min_amount": "50000.00",
+              "max_amount": "500000.00",
+              "role": "Finance Manager"
+            },
+            {
+              "min_amount": "500000.01",
+              "max_amount": "999999999.00",
+              "role": "Senior Finance Approval"
+            }
+          ]
+        }
+      },
+      "timestamp": "2026-07-04T06:15:56.792093+00:00"
+    },
+    {
+      "check": "normalize_invoice",
+      "purpose": "Normalize incoming invoice and build dedupe_key.",
+      "output": {
+        "invoice_number": "INV-TEST-UNAPPROVED-VENDOR-001",
+        "vendor_id": "VEND-1004",
+        "po_id": "PO-9001",
+        "total": "531000.00",
+        "dedupe_key": "vend-1004|inv-test-unapproved-vendor-001|531000.00|2026-06-27"
+      },
+      "timestamp": "2026-07-04T06:15:56.792140+00:00"
+    },
+    {
+      "check": "completeness",
+      "purpose": "Missing critical field check.",
+      "output": {
+        "missing_fields": []
+      },
+      "timestamp": "2026-07-04T06:15:56.792149+00:00"
+    },
+    {
+      "check": "vendor_approval",
+      "purpose": "Vendor approval and exact vendor-name check against vendor master.",
+      "output": {
+        "vendor": {
+          "vendor_id": "VEND-1004",
+          "name": "Orbit LLC",
+          "approved": false,
+          "tax_id": "US-44-4444444",
+          "created_at": "2025-11-02T19:15:00+05:30"
+        },
+        "approved": false,
+        "invoice_vendor_name": "Orbit LLC",
+        "master_vendor_name": "Orbit LLC",
+        "name_matches": true,
+        "resolution": "vendor_id_exact",
+        "comparison": "exact_or_ocr_normalized"
+      },
+      "timestamp": "2026-07-04T06:15:56.792187+00:00"
+    },
+    {
+      "check": "short_circuit",
+      "purpose": "Stop after terminal vendor rejection.",
+      "output": {
+        "decision": "rejected",
+        "reason": "vendor not approved or not found"
+      },
+      "timestamp": "2026-07-04T06:15:56.792217+00:00"
+    }
+  ],
+  "ledger_updated": false
+}
