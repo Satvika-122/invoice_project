@@ -4,10 +4,10 @@
       "check": "data_source",
       "purpose": "Load AP reference data and invoice history from configured data store.",
       "output": {
-        "source": "postgresql",
+        "source": "sqlite",
         "vendors_loaded": 10,
         "purchase_orders_loaded": 8,
-        "historical_invoices_loaded": 1,
+        "historical_invoices_loaded": 0,
         "rules_config": {
           "tolerance_pct": "0.02",
           "tolerance_abs": "5.00",
@@ -36,19 +36,19 @@
           ]
         }
       },
-      "timestamp": "2026-07-04T09:22:02.745205+00:00"
+      "timestamp": "2026-07-04T16:05:20.317966+00:00"
     },
     {
       "check": "normalize_invoice",
       "purpose": "Normalize incoming invoice and build dedupe_key.",
       "output": {
-        "invoice_number": "BILL-ACME-001",
+        "invoice_number": "DEMO-LAP-2026-001",
         "vendor_id": "VEND-1001",
         "po_id": "PO-9001",
         "total": "531000.00",
-        "dedupe_key": "vend-1001|bill-acme-001|531000.00|2026-06-27"
+        "dedupe_key": "vend-1001|demo-lap-2026-001|531000.00|2026-06-27"
       },
-      "timestamp": "2026-07-04T09:22:02.745271+00:00"
+      "timestamp": "2026-07-04T16:05:20.317998+00:00"
     },
     {
       "check": "completeness",
@@ -56,7 +56,7 @@
       "output": {
         "missing_fields": []
       },
-      "timestamp": "2026-07-04T09:22:02.745285+00:00"
+      "timestamp": "2026-07-04T16:05:20.318004+00:00"
     },
     {
       "check": "vendor_approval",
@@ -65,9 +65,9 @@
         "vendor": {
           "vendor_id": "VEND-1001",
           "name": "Acme Co",
-          "approved": true,
+          "approved": 1,
           "tax_id": "US-11-1111111",
-          "created_at": "2025-10-01T14:30:00+05:30"
+          "created_at": "2025-10-01T09:00:00Z"
         },
         "approved": true,
         "invoice_vendor_name": "Acme Co",
@@ -76,7 +76,7 @@
         "resolution": "vendor_id_exact",
         "comparison": "exact_or_ocr_normalized"
       },
-      "timestamp": "2026-07-04T09:22:02.745328+00:00"
+      "timestamp": "2026-07-04T16:05:20.318021+00:00"
     },
     {
       "check": "duplicate",
@@ -85,7 +85,7 @@
         "duplicate": false,
         "matches": []
       },
-      "timestamp": "2026-07-04T09:22:02.745339+00:00"
+      "timestamp": "2026-07-04T16:05:20.318025+00:00"
     },
     {
       "check": "reused_invoice_number",
@@ -94,7 +94,7 @@
         "reused": false,
         "matches": []
       },
-      "timestamp": "2026-07-04T09:22:02.745349+00:00"
+      "timestamp": "2026-07-04T16:05:20.318029+00:00"
     },
     {
       "check": "po_match",
@@ -105,9 +105,9 @@
           "po_id": "PO-9001",
           "vendor_id": "VEND-1001",
           "po_amount": "767000.00",
-          "matched_amount": "531000.00",
-          "status": "partially_matched",
-          "created_at": "2026-06-01T05:30:00+05:30",
+          "matched_amount": "0.00",
+          "status": "open",
+          "created_at": "2026-06-01T00:00:00Z",
           "line_items": [
             {
               "po_line_id": "PO-9001-1",
@@ -126,17 +126,17 @@
           ]
         }
       },
-      "timestamp": "2026-07-04T09:22:02.745383+00:00"
+      "timestamp": "2026-07-04T16:05:20.318039+00:00"
     },
     {
       "check": "po_status",
       "purpose": "Reject invoices against closed or fully matched purchase orders before aggregation.",
       "output": {
         "po_id": "PO-9001",
-        "status": "partially_matched",
+        "status": "open",
         "rejected": false
       },
-      "timestamp": "2026-07-04T09:22:02.745395+00:00"
+      "timestamp": "2026-07-04T16:05:20.318045+00:00"
     },
     {
       "check": "po_aggregate",
@@ -144,36 +144,37 @@
       "output": {
         "po_id": "PO-9001",
         "po_amount": "767000.00",
-        "previous_matched_amount": "531000.00",
+        "previous_matched_amount": "0.00",
         "invoice_total": "531000.00",
-        "projected_matched_amount": "1062000.00"
+        "projected_matched_amount": "531000.00"
       },
-      "timestamp": "2026-07-04T09:22:02.745439+00:00"
+      "timestamp": "2026-07-04T16:05:20.318405+00:00"
     },
     {
       "check": "tolerance",
       "purpose": "Check projected matched amount against PO tolerance.",
       "output": {
-        "projected": "1062000.00",
+        "projected": "531000.00",
         "po_amount": "767000.00",
-        "overage": "295000.00",
+        "overage": "0.00",
         "allowed": "15340.00",
-        "passed": false
+        "passed": true
       },
-      "timestamp": "2026-07-04T09:22:02.745477+00:00"
+      "timestamp": "2026-07-04T16:05:20.318430+00:00"
     },
     {
       "check": "OCR Confidence",
-      "purpose": "Structured JSON input; OCR confidence is not applicable.",
+      "purpose": "Extraction confidence is high.",
       "output": {
         "rule": "OCR Confidence",
         "status": "PASS",
-        "reason": "Structured JSON input; OCR confidence is not applicable.",
+        "reason": "Extraction confidence is high.",
         "details": {
-          "method": "structured_json"
+          "method": "digital_pdf",
+          "confidence": "0.98"
         }
       },
-      "timestamp": "2026-07-04T09:22:02.793035+00:00"
+      "timestamp": "2026-07-04T16:05:20.319579+00:00"
     },
     {
       "check": "Total Calculation Validation",
@@ -192,7 +193,7 @@
           "allowed_tolerance": "5.00"
         }
       },
-      "timestamp": "2026-07-04T09:22:02.793054+00:00"
+      "timestamp": "2026-07-04T16:05:20.319590+00:00"
     },
     {
       "check": "Tax Validation",
@@ -210,7 +211,7 @@
           "allowed_tolerance": "5.00"
         }
       },
-      "timestamp": "2026-07-04T09:22:02.793061+00:00"
+      "timestamp": "2026-07-04T16:05:20.319598+00:00"
     },
     {
       "check": "Quantity Validation",
@@ -232,7 +233,7 @@
           ]
         }
       },
-      "timestamp": "2026-07-04T09:22:02.793068+00:00"
+      "timestamp": "2026-07-04T16:05:20.319603+00:00"
     },
     {
       "check": "Unit Price Validation",
@@ -255,7 +256,7 @@
           ]
         }
       },
-      "timestamp": "2026-07-04T09:22:02.793076+00:00"
+      "timestamp": "2026-07-04T16:05:20.319608+00:00"
     },
     {
       "check": "Goods Receipt Validation",
@@ -276,7 +277,7 @@
           ]
         }
       },
-      "timestamp": "2026-07-04T09:22:02.793083+00:00"
+      "timestamp": "2026-07-04T16:05:20.319612+00:00"
     },
     {
       "check": "Approval Workflow",
@@ -291,7 +292,7 @@
           "assigned_approver_role": "Senior Finance Approval"
         }
       },
-      "timestamp": "2026-07-04T09:22:02.793088+00:00"
+      "timestamp": "2026-07-04T16:05:20.319616+00:00"
     }
   ]
 }

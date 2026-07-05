@@ -49,6 +49,12 @@ def tax_for(subtotal: Decimal) -> Decimal:
     return money(subtotal * TAX_RATE)
 
 
+def quantity_text(value: Decimal) -> str:
+    if value == value.to_integral_value():
+        return str(int(value))
+    return format(value.normalize(), "f")
+
+
 def fixture(
     slug: str,
     scenario: str,
@@ -125,7 +131,7 @@ def as_json_payload(item: InvoiceFixture) -> dict[str, Any]:
         "line_items": [
             {
                 "description": line.description,
-                "quantity": str(line.quantity.normalize()),
+                "quantity": quantity_text(line.quantity),
                 "unit_price": str(line.unit_price),
                 "line_amount": str(line.line_amount),
                 "tax_amount": None,
@@ -154,7 +160,7 @@ def invoice_text_lines(item: InvoiceFixture) -> list[str]:
         ]
     )
     for line in item.lines:
-        lines.append(f"{line.description} {line.quantity.normalize()} {line.unit_price} {line.line_amount}")
+        lines.append(f"{line.description} {quantity_text(line.quantity)} {line.unit_price} {line.line_amount}")
     lines.extend(
         [
             "",

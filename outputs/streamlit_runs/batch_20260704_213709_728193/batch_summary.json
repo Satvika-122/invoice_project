@@ -1,0 +1,27 @@
+{
+  "total_invoices": 2,
+  "approved": 0,
+  "partial_approved": 0,
+  "manual_review": 1,
+  "rejected": 1,
+  "items": [
+    {
+      "invoice": "C:\\Users\\User\\OneDrive\\Desktop\\Assignment\\.streamlit_uploads\\batch_20260704_213709_728193\\laptop_01_happy_path_full_po_match.pdf",
+      "bill_number": "DEMO-LAP-2026-001",
+      "decision": "needs_review",
+      "reasons": [
+        "Approval Workflow: Invoice amount requires Senior Finance Approval approval."
+      ],
+      "persisted_to_history": false
+    },
+    {
+      "invoice": "C:\\Users\\User\\OneDrive\\Desktop\\Assignment\\.streamlit_uploads\\batch_20260704_213709_728193\\laptop_03_vendor_name_mismatch.png",
+      "bill_number": "DEMO-LAP-2026-003",
+      "decision": "rejected",
+      "reasons": [
+        "Vendor name mismatch: invoice has 'Ace Co', vendor master has 'Acme Co'"
+      ],
+      "persisted_to_history": false
+    }
+  ]
+}

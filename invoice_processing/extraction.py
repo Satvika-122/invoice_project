@@ -517,7 +517,7 @@ def extract_line_items(text: str) -> list[dict[str, Any]]:
     for match in pattern.finditer(text):
         items.append(
             {
-                "description": clean(match.group("description")),
+                "description": clean_line_description(match.group("description")),
                 "quantity": normalize_amount(match.group("quantity")),
                 "unit_price": normalize_amount(match.group("unit")),
                 "line_amount": normalize_amount(match.group("amount")),
@@ -525,6 +525,16 @@ def extract_line_items(text: str) -> list[dict[str, Any]]:
             }
         )
     return items
+
+
+def clean_line_description(value: str | None) -> str | None:
+    description = clean(value)
+    if not description:
+        return None
+    header = "Description Quantity Unit Price Amount"
+    if description.lower().startswith(header.lower()):
+        description = description[len(header) :].strip()
+    return description or None
 
 
 def scanned_pdf_fallback(pdf_path: Path) -> dict[str, Any]:

@@ -1,134 +1,5 @@
 {
-  "generated_at": "2026-07-04T16:05:20.319629+00:00",
-  "source_invoice": "data\\demo_invoices\\laptop_01_happy_path_full_po_match.pdf",
-  "decision": {
-    "decision": "needs_review",
-    "invoice_number": "DEMO-LAP-2026-001",
-    "vendor_id": "VEND-1001",
-    "po_id": "PO-9001",
-    "dedupe_key": "vend-1001|demo-lap-2026-001|531000.00|2026-06-27",
-    "reasons": [
-      "Approval Workflow: Invoice amount requires Senior Finance Approval approval."
-    ],
-    "checks_run": [
-      "completeness",
-      "vendor_approval",
-      "duplicate",
-      "reused_invoice_number",
-      "po_match",
-      "po_status",
-      "po_aggregate",
-      "tolerance",
-      "OCR Confidence",
-      "Total Calculation Validation",
-      "Tax Validation",
-      "Quantity Validation",
-      "Unit Price Validation",
-      "Goods Receipt Validation",
-      "Approval Workflow"
-    ],
-    "validations": [
-      {
-        "rule": "OCR Confidence",
-        "status": "PASS",
-        "reason": "Extraction confidence is high.",
-        "details": {
-          "method": "digital_pdf",
-          "confidence": "0.98"
-        }
-      },
-      {
-        "rule": "Total Calculation Validation",
-        "status": "PASS",
-        "reason": "Invoice arithmetic is correct.",
-        "details": {
-          "line_subtotal": "450000.00",
-          "invoice_subtotal": "450000.00",
-          "subtotal_difference": "0.00",
-          "expected_total": "531000.00",
-          "actual_total": "531000.00",
-          "total_difference": "0.00",
-          "allowed_tolerance": "5.00"
-        }
-      },
-      {
-        "rule": "Tax Validation",
-        "status": "PASS",
-        "reason": "Subtotal plus tax matches invoice total.",
-        "details": {
-          "subtotal": "450000.00",
-          "tax": "81000.00",
-          "expected_total": "531000.00",
-          "actual_total": "531000.00",
-          "difference": "0.00",
-          "allowed_tolerance": "5.00"
-        }
-      },
-      {
-        "rule": "Quantity Validation",
-        "status": "PASS",
-        "reason": "Line-item quantities compared against PO lines.",
-        "details": {
-          "lines": [
-            {
-              "invoice_item": "Laptop",
-              "po_item": "Laptop",
-              "invoice_quantity": "10.00",
-              "ordered_quantity": "10.00",
-              "status": "PASS",
-              "reason": "Invoice quantity equals PO ordered quantity."
-            }
-          ]
-        }
-      },
-      {
-        "rule": "Unit Price Validation",
-        "status": "PASS",
-        "reason": "Line-item unit prices compared against PO lines.",
-        "details": {
-          "lines": [
-            {
-              "invoice_item": "Laptop",
-              "po_item": "Laptop",
-              "expected_price": "45000.00",
-              "invoice_price": "45000.00",
-              "difference": "0.00",
-              "status": "PASS",
-              "reason": "Invoice unit price matches PO unit price."
-            }
-          ]
-        }
-      },
-      {
-        "rule": "Goods Receipt Validation",
-        "status": "PASS",
-        "reason": "PO, goods receipt, and invoice quantities compared.",
-        "details": {
-          "lines": [
-            {
-              "invoice_item": "Laptop",
-              "invoice_quantity": "10.00",
-              "received_quantity": "10.00",
-              "status": "PASS",
-              "reason": "Invoice quantity equals received quantity."
-            }
-          ]
-        }
-      },
-      {
-        "rule": "Approval Workflow",
-        "status": "MANUAL_REVIEW",
-        "reason": "Invoice amount requires Senior Finance Approval approval.",
-        "details": {
-          "invoice_amount": "531000.00",
-          "approval_level": "Level 3",
-          "assigned_approver_role": "Senior Finance Approval"
-        }
-      }
-    ],
-    "decided_at": "2026-07-04T16:05:20.319626+00:00"
-  },
-  "trace": [
+  "execution_trace": [
     {
       "check": "data_source",
       "purpose": "Load AP reference data and invoice history from configured data store.",
@@ -165,7 +36,7 @@
           ]
         }
       },
-      "timestamp": "2026-07-04T16:05:20.317966+00:00"
+      "timestamp": "2026-07-04T14:27:23.183138+00:00"
     },
     {
       "check": "normalize_invoice",
@@ -177,7 +48,7 @@
         "total": "531000.00",
         "dedupe_key": "vend-1001|demo-lap-2026-001|531000.00|2026-06-27"
       },
-      "timestamp": "2026-07-04T16:05:20.317998+00:00"
+      "timestamp": "2026-07-04T14:27:23.183269+00:00"
     },
     {
       "check": "completeness",
@@ -185,7 +56,7 @@
       "output": {
         "missing_fields": []
       },
-      "timestamp": "2026-07-04T16:05:20.318004+00:00"
+      "timestamp": "2026-07-04T14:27:23.183287+00:00"
     },
     {
       "check": "vendor_approval",
@@ -205,7 +76,7 @@
         "resolution": "vendor_id_exact",
         "comparison": "exact_or_ocr_normalized"
       },
-      "timestamp": "2026-07-04T16:05:20.318021+00:00"
+      "timestamp": "2026-07-04T14:27:23.183338+00:00"
     },
     {
       "check": "duplicate",
@@ -214,7 +85,7 @@
         "duplicate": false,
         "matches": []
       },
-      "timestamp": "2026-07-04T16:05:20.318025+00:00"
+      "timestamp": "2026-07-04T14:27:23.183348+00:00"
     },
     {
       "check": "reused_invoice_number",
@@ -223,7 +94,7 @@
         "reused": false,
         "matches": []
       },
-      "timestamp": "2026-07-04T16:05:20.318029+00:00"
+      "timestamp": "2026-07-04T14:27:23.183356+00:00"
     },
     {
       "check": "po_match",
@@ -255,7 +126,7 @@
           ]
         }
       },
-      "timestamp": "2026-07-04T16:05:20.318039+00:00"
+      "timestamp": "2026-07-04T14:27:23.183377+00:00"
     },
     {
       "check": "po_status",
@@ -265,7 +136,7 @@
         "status": "open",
         "rejected": false
       },
-      "timestamp": "2026-07-04T16:05:20.318045+00:00"
+      "timestamp": "2026-07-04T14:27:23.183389+00:00"
     },
     {
       "check": "po_aggregate",
@@ -277,7 +148,7 @@
         "invoice_total": "531000.00",
         "projected_matched_amount": "531000.00"
       },
-      "timestamp": "2026-07-04T16:05:20.318405+00:00"
+      "timestamp": "2026-07-04T14:27:23.183985+00:00"
     },
     {
       "check": "tolerance",
@@ -289,7 +160,7 @@
         "allowed": "15340.00",
         "passed": true
       },
-      "timestamp": "2026-07-04T16:05:20.318430+00:00"
+      "timestamp": "2026-07-04T14:27:23.184067+00:00"
     },
     {
       "check": "OCR Confidence",
@@ -303,7 +174,7 @@
           "confidence": "0.98"
         }
       },
-      "timestamp": "2026-07-04T16:05:20.319579+00:00"
+      "timestamp": "2026-07-04T14:27:23.186969+00:00"
     },
     {
       "check": "Total Calculation Validation",
@@ -322,7 +193,7 @@
           "allowed_tolerance": "5.00"
         }
       },
-      "timestamp": "2026-07-04T16:05:20.319590+00:00"
+      "timestamp": "2026-07-04T14:27:23.186995+00:00"
     },
     {
       "check": "Tax Validation",
@@ -340,7 +211,7 @@
           "allowed_tolerance": "5.00"
         }
       },
-      "timestamp": "2026-07-04T16:05:20.319598+00:00"
+      "timestamp": "2026-07-04T14:27:23.187005+00:00"
     },
     {
       "check": "Quantity Validation",
@@ -362,7 +233,7 @@
           ]
         }
       },
-      "timestamp": "2026-07-04T16:05:20.319603+00:00"
+      "timestamp": "2026-07-04T14:27:23.187015+00:00"
     },
     {
       "check": "Unit Price Validation",
@@ -385,7 +256,7 @@
           ]
         }
       },
-      "timestamp": "2026-07-04T16:05:20.319608+00:00"
+      "timestamp": "2026-07-04T14:27:23.187025+00:00"
     },
     {
       "check": "Goods Receipt Validation",
@@ -406,7 +277,7 @@
           ]
         }
       },
-      "timestamp": "2026-07-04T16:05:20.319612+00:00"
+      "timestamp": "2026-07-04T14:27:23.187034+00:00"
     },
     {
       "check": "Approval Workflow",
@@ -421,8 +292,7 @@
           "assigned_approver_role": "Senior Finance Approval"
         }
       },
-      "timestamp": "2026-07-04T16:05:20.319616+00:00"
+      "timestamp": "2026-07-04T14:27:23.187041+00:00"
     }
-  ],
-  "ledger_updated": false
+  ]
 }

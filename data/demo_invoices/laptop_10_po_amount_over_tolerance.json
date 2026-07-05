@@ -13,7 +13,7 @@
   "line_items": [
     {
       "description": "Laptop",
-      "quantity": "2E+1",
+      "quantity": "20",
       "unit_price": "45000.00",
       "line_amount": "900000.00",
       "tax_amount": null
