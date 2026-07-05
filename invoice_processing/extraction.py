@@ -265,38 +265,48 @@ def extract_text_with_gemini(file_path: Path) -> dict[str, Any]:
         '{"description": string|null, "quantity": string|null, "unit_price": string|null, '
         '"line_amount": string|null, "tax_amount": string|null}]}'
     )
+    import time
     import traceback
-
-    try:
-        print("=" * 80)
-        print("Starting Gemini extraction")
-        print(f"File: {file_path}")
-        print(f"Exists: {file_path.exists()}")
-        print(f"Size: {file_path.stat().st_size} bytes")
-        print(f"Model: {os.environ.get('GEMINI_MODEL', 'gemini-2.5-flash')}")
-        print("=" * 80)
     
+    try:
         genai.configure(api_key=api_key)
         model = genai.GenerativeModel(
             os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
         )
     
-        response = model.generate_content(
-            [
-                prompt,
-                {
-                    "mime_type": mime_type_for(file_path),
-                    "data": file_path.read_bytes(),
-                },
-            ],
-            request_options={"timeout": 30},
-        )
+        try:
+            response = model.generate_content(
+                [
+                    prompt,
+                    {
+                        "mime_type": mime_type_for(file_path),
+                        "data": file_path.read_bytes(),
+                    },
+                ],
+                request_options={"timeout": 30},
+            )
+    
+        except Exception as exc:
+            # Retry only once for 429 errors
+            if "429" in str(exc):
+                print("Gemini quota/rate limit reached.")
+                print("Waiting 90 seconds before retrying...")
+                time.sleep(90)
+    
+                response = model.generate_content(
+                    [
+                        prompt,
+                        {
+                            "mime_type": mime_type_for(file_path),
+                            "data": file_path.read_bytes(),
+                        },
+                    ],
+                    request_options={"timeout": 30},
+                )
+            else:
+                raise
     
         text = getattr(response, "text", "") or ""
-    
-        print("========== GEMINI RAW RESPONSE ==========")
-        print(text)
-        print("=========================================")
     
         structured = parse_gemini_json(text)
     
@@ -316,11 +326,7 @@ def extract_text_with_gemini(file_path: Path) -> dict[str, Any]:
         }
     
     except Exception as exc:
-        print("=" * 80)
-        print("GEMINI EXCEPTION")
-        print(exc)
         traceback.print_exc()
-        print("=" * 80)
     
         return {
             "text": "",
