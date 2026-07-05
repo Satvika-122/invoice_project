@@ -265,9 +265,22 @@ def extract_text_with_gemini(file_path: Path) -> dict[str, Any]:
         '{"description": string|null, "quantity": string|null, "unit_price": string|null, '
         '"line_amount": string|null, "tax_amount": string|null}]}'
     )
+    import traceback
+
     try:
+        print("=" * 80)
+        print("Starting Gemini extraction")
+        print(f"File: {file_path}")
+        print(f"Exists: {file_path.exists()}")
+        print(f"Size: {file_path.stat().st_size} bytes")
+        print(f"Model: {os.environ.get('GEMINI_MODEL', 'gemini-2.5-flash')}")
+        print("=" * 80)
+    
         genai.configure(api_key=api_key)
-        model = genai.GenerativeModel(os.environ.get("GEMINI_MODEL", "gemini-2.5-flash"))
+        model = genai.GenerativeModel(
+            os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
+        )
+    
         response = model.generate_content(
             [
                 prompt,
@@ -278,13 +291,43 @@ def extract_text_with_gemini(file_path: Path) -> dict[str, Any]:
             ],
             request_options={"timeout": 30},
         )
+    
         text = getattr(response, "text", "") or ""
+    
+        print("========== GEMINI RAW RESPONSE ==========")
+        print(text)
+        print("=========================================")
+    
         structured = parse_gemini_json(text)
+    
         if structured:
-            return {"text": text, "structured": structured, "method": "gemini", "confidence": 0.92}
-        return {"text": text, "method": "gemini", "confidence": 0.75 if text.strip() else 0.0, "error": "Gemini response was not parseable JSON"}
+            return {
+                "text": text,
+                "structured": structured,
+                "method": "gemini",
+                "confidence": 0.92,
+            }
+    
+        return {
+            "text": text,
+            "method": "gemini",
+            "confidence": 0.75 if text.strip() else 0.0,
+            "error": "Gemini response was not parseable JSON",
+        }
+    
     except Exception as exc:
-        return {"text": "", "method": "gemini", "confidence": 0.0, "error": str(exc)}
+        print("=" * 80)
+        print("GEMINI EXCEPTION")
+        print(exc)
+        traceback.print_exc()
+        print("=" * 80)
+    
+        return {
+            "text": "",
+            "method": "gemini",
+            "confidence": 0.0,
+            "error": str(exc),
+        }
 
 
 def gemini_api_key() -> str | None:
